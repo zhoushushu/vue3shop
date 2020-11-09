@@ -54,7 +54,6 @@ export default {
     .boxSizing();
     color: #fff;
     z-index: 10000;
-    background: black;
     .lefticon {
       width: 48px;
       .flexcenter();
