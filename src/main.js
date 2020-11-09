@@ -2,5 +2,12 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
-createApp(App).use(store).use(router).mount('#app')
+// 全局引入Vant样式
+import 'vant/lib/index.css'
+import { Button } from 'vant'
+// 创建实例
+const app = createApp(App)
+app.use(Button)
+app.use(store)
+app.use(router)
+app.mount('#app')

@@ -1,5 +1,5 @@
 <template>
-  <div class="homewrap">home</div>
+  <div class="detailwrap">Detail</div>
 </template>
 
 <script>
@@ -7,4 +7,6 @@ export default {};
 </script>
 
 <style lang="less" scoped>
+.detailwrap {
+}
 </style>
