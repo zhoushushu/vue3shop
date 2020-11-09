@@ -1,10 +1,23 @@
 <template>
-  <div class="homewrap">home</div>
+  <div class="homewrap">
+    <!-- 头部 -->
+    <m-header></m-header>
+  </div>
 </template>
 
 <script>
-export default {};
+import { reactive, toRefs, nextTick } from "vue";
+import mHeader from "../components/header/index";
+
+export default {
+  components: {
+    mHeader,
+  },
+  setup() {},
+};
 </script>
 
 <style lang="less" scoped>
+.homewrap {
+}
 </style>
