@@ -26,7 +26,7 @@ export default {
         "scroll",
         () => {
           let scrollTop = document.querySelector(".routerview").scrollTop;
-          scrollTop > 100
+          scrollTop > 150
             ? (state.pageScroll = true)
             : (state.pageScroll = false);
         },

@@ -5,7 +5,7 @@
     <!-- 底部导航 -->
     <bottom-nav></bottom-nav>
     <!-- 轮播图 -->
-    <m-swiper></m-swiper>
+    <m-swiper :swiperData="swiperImages"></m-swiper>
     <!-- 导航 -->
     <div class="navlist">
       <div v-for="item in navList" :key="item.id" @click="tips">
@@ -13,23 +13,38 @@
         <span class="navtitle">{{ item.title }}</span>
       </div>
     </div>
+    <!-- 新品上线 -->
+    <m-goods title="新品上线" :goodData="newGoods"></m-goods>
+    <!-- 热门商品 -->
+    <m-goods title="热门商品" :goodData="hotGoods"></m-goods>
+    <!-- 最新推荐 -->
+    <m-goods title="最新推荐" :goodData="recommendGoods"></m-goods>
+    <!-- 顶部 -->
+    <m-footer></m-footer>
   </div>
 </template>
 
 <script>
-import { onMounted, reactive, toRefs, nextTick } from "vue";
+import { onMounted, reactive, toRefs } from "vue";
 import mHeader from "../components/header/index";
 import bottomNav from "../components/bottomnav/index";
 import mSwiper from "../components/swiper/index";
+import mGoods from "../components/goods/index";
+import mFooter from "../components/footer/index";
+//
+import { get } from "../service/http";
 
 export default {
   components: {
     mHeader,
     bottomNav,
     mSwiper,
+    mGoods,
+    mFooter,
   },
   setup() {
     const state = reactive({
+      swiperImages: [],
       navList: [
         {
           title: "新蜂超市",
@@ -83,6 +98,17 @@ export default {
           id: 100010,
         },
       ],
+      newGoods: [],
+      hotGoods: [],
+      recommendGoods: [],
+    });
+    //
+    onMounted(async () => {
+      let data = await get("/index-infos");
+      state.swiperImages = data.data.carousels;
+      state.newGoods = data.data.newGoodses;
+      state.hotGoods = data.data.hotGoodses;
+      state.recommendGoods = data.data.recommendGoodses;
     });
     //
     return {
