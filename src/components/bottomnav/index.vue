@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "../../assets/style/mixin";
+@import "../../common/style/mixin";
 
 .bottomnav {
   position: fixed;

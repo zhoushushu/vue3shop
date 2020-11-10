@@ -1,5 +1,5 @@
 <template>
-  <router-view v-slot="{ Component }">
+  <router-view class="routerview" v-slot="{ Component }">
     <transition :name="transitionName">
       <component :is="Component" />
     </transition>
@@ -36,16 +36,22 @@ body,
 #app {
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-
-#app {
+  overflow: hidden;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+}
+
+.routerview {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .slide-right-enter-active,
