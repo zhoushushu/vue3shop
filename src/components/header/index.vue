@@ -3,7 +3,9 @@
     class="headerwrap"
     :class="pageScroll ? 'headerwrap_active' : 'headerwrap'"
   >
-    <span class="lefticon"><van-icon name="apps-o" /></span>
+    <router-link class="lefticon" tag="span" to="/category">
+      <van-icon name="apps-o" />
+    </router-link>
     <div class="headersearch">
       <van-icon name="search" class="iconsearch" />
       <span class="searchtitle">搜索想要的商品</span>
@@ -47,21 +49,21 @@ export default {
   position: fixed;
   left: 0;
   top: 0;
-  .wh(100%, 48px);
+  .wh(100%, 50px);
   display: flex;
   align-items: center;
-  line-height: 48px;
+  line-height: 50px;
   .boxSizing();
   color: #fff;
   z-index: 10000;
   .lefticon {
-    width: 48px;
+    width: 50px;
     .flexcenter();
     color: @primary;
     font-size: 16px;
   }
   .righticon {
-    width: 48px;
+    width: 50px;
     .flexcenter();
     color: @primary;
     font-size: 16px;

@@ -61,7 +61,7 @@ export default {
       padding: 10px 10px;
       img {
         display: block;
-        width: 120px;
+        width: 100px;
         margin: 0 auto;
       }
       .gooddesc {

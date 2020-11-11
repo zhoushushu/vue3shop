@@ -6,9 +6,9 @@
 .footer {
   color: #999;
   font-size: 10px;
-  height: 48px;
-  line-height: 48px;
+  height: 50px;
+  line-height: 50px;
   text-align: center;
-  margin-bottom: 48px;
+  margin-bottom: 50px;
 }
 </style>

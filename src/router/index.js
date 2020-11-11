@@ -15,6 +15,14 @@ const routes = [
     }
   },
   {
+    path: '/category',
+    name: 'Category',
+    component: () => import('../views/Category.vue'),
+    meta: {
+      index: 1
+    }
+  },
+  {
     path: '/detail',
     name: 'Detail',
     component: () => import('../views/Detail.vue'),

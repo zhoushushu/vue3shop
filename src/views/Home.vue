@@ -3,7 +3,7 @@
     <!-- 头部 -->
     <m-header></m-header>
     <!-- 底部导航 -->
-    <bottom-nav></bottom-nav>
+    <bottom-nav :active="tabActive"></bottom-nav>
     <!-- 轮播图 -->
     <m-swiper :swiperData="swiperImages"></m-swiper>
     <!-- 导航 -->
@@ -19,7 +19,7 @@
     <m-goods title="热门商品" :goodData="hotGoods"></m-goods>
     <!-- 最新推荐 -->
     <m-goods title="最新推荐" :goodData="recommendGoods"></m-goods>
-    <!-- 顶部 -->
+    <!-- 底部 -->
     <m-footer></m-footer>
   </div>
 </template>
@@ -44,6 +44,7 @@ export default {
   },
   setup() {
     const state = reactive({
+      tabActive: 0,
       swiperImages: [],
       navList: [
         {
