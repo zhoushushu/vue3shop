@@ -8,7 +8,7 @@ const routes = [
   },
   {
     path: '/home',
-    name: 'Home',
+    name: 'home',
     component: Home,
     meta: {
       index: 1
@@ -16,7 +16,7 @@ const routes = [
   },
   {
     path: '/category',
-    name: 'Category',
+    name: 'category',
     component: () => import('../views/Category.vue'),
     meta: {
       index: 1
@@ -24,10 +24,42 @@ const routes = [
   },
   {
     path: '/detail',
-    name: 'Detail',
+    name: 'detail',
     component: () => import('../views/Detail.vue'),
     meta: {
       index: 2
+    }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/Login.vue'),
+    meta: {
+      index: 1
+    }
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('../views/Register.vue'),
+    meta: {
+      index: 1
+    }
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import('../views/User.vue'),
+    meta: {
+      index: 1
+    }
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: () => import('../views/Cart.vue'),
+    meta: {
+      index: 1
     }
   }
 ]

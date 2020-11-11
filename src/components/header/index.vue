@@ -10,7 +10,9 @@
       <van-icon name="search" class="iconsearch" />
       <span class="searchtitle">搜索想要的商品</span>
     </div>
-    <span class="righticon"><van-icon name="user-o" /></span>
+    <router-link class="righticon" tag="span" to="/user">
+      <van-icon name="user-o" />
+    </router-link>
   </header>
 </template>
 

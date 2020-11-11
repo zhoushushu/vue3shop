@@ -1,10 +1,10 @@
 <template>
   <header class="subheader">
     <span class="lefticon" @click="goback">
-      <van-icon name="arrow-left" />
+      <van-icon v-if="gobackShow" name="arrow-left" />
     </span>
     <div class="headertitle">{{ title }}</div>
-    <span class="righticon"><van-icon name="user-o" /></span>
+    <span class="righticon"><van-icon v-if="loginShow" name="user-o" /></span>
   </header>
 </template>
 
@@ -14,6 +14,20 @@ import { useRouter } from "vue-router";
 
 export default {
   props: ["title"],
+  props: {
+    gobackShow: {
+      type: Boolean,
+      default: true,
+    },
+    title: {
+      type: String,
+      default: "标题",
+    },
+    loginShow: {
+      type: Boolean,
+      default: true,
+    },
+  },
   setup() {
     //
     const router = useRouter();
