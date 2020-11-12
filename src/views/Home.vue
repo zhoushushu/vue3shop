@@ -8,7 +8,7 @@
     <m-swiper :swiperData="swiperImages"></m-swiper>
     <!-- 导航 -->
     <div class="navlist">
-      <div v-for="item in navList" :key="item.id" @click="tips">
+      <div v-for="item in navList" :key="item.id">
         <img :src="item.url" />
         <span class="navtitle">{{ item.title }}</span>
       </div>

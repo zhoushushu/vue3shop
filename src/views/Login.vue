@@ -40,9 +40,7 @@
         </div>
       </van-form>
       <div class="tips">
-        <router-link tag="span" to="/register"
-          >立即注册</router-link
-        >
+        <router-link tag="span" to="/register">立即注册</router-link>
       </div>
     </div>
   </div>
@@ -50,10 +48,14 @@
 
 <script>
 import { reactive, toRefs } from "vue";
+import { useRouter } from "vue-router";
 import mHeader from "../components/subheader/index";
 import mFooter from "../components/footer/index";
 import mIdentify from "../components/identify/index";
 import { Toast } from "vant";
+import { post } from "../service/http";
+import md5 from "js-md5";
+import store from "../common/js/store";
 
 export default {
   components: {
@@ -68,16 +70,33 @@ export default {
       identifyCode: "",
       validCode: "",
     });
+    const router = useRouter();
     //
     function updateValue(val) {
       state.validCode = val;
     }
     //
-    function onSubmit() {
+    async function onSubmit() {
       if (state.identifyCode !== state.validCode) {
         Toast("验证码不正确");
         return;
       }
+      let obj = {};
+      obj.loginName = state.username;
+      obj.passwordMd5 = md5(state.password);
+      let temp = await post("/user/login", obj);
+      if (temp.resultCode !== 200) {
+        Toast(temp.message);
+        return;
+      }
+      // token
+      let token = temp.data;
+      store.set("token", token);
+      //
+      Toast("登录成功");
+      setTimeout(() => {
+        router.push("/");
+      }, 1000);
     }
     //
     return {

@@ -19,9 +19,13 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
+
 export default {
   props: ["title", "goodData"],
   setup() {
+    const router = useRouter();
+    //
     function filterImg(url) {
       if (url && url.startsWith("http")) {
         return url;
@@ -30,8 +34,16 @@ export default {
         return url;
       }
     }
+    //
+    function goToDetail(obj) {
+      router.push({
+        path: `/product/${obj.goodsId}`,
+      });
+    }
+    //
     return {
       filterImg,
+      goToDetail,
     };
   },
 };

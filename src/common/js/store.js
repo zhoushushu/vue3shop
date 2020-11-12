@@ -2,13 +2,13 @@ import store from 'store2'
 
 export default {
   get: key => {
-    return store(`nuctech_${key}`)
+    return store(`mshop_${key}`)
   },
   set: (key, data) => {
-    store(`nuctech_${key}`, data)
+    store(`mshop_${key}`, data)
   },
   clear: key => {
-    store.remove(`nuctech_${key}`)
+    store.remove(`mshop_${key}`)
   },
   clearAll: () => {
     store.clearAll()

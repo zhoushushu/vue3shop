@@ -61,6 +61,22 @@ const routes = [
     meta: {
       index: 1
     }
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import('../views/About.vue'),
+    meta: {
+      index: 2
+    }
+  },
+  {
+    path: '/product/:id',
+    name: 'product',
+    component: () => import('../views/Product.vue'),
+    meta: {
+      index: 3
+    }
   }
 ]
 

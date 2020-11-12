@@ -48,10 +48,12 @@
 
 <script>
 import { reactive, toRefs } from "vue";
+import { useRouter } from "vue-router";
 import mHeader from "../components/subheader/index";
 import mFooter from "../components/footer/index";
 import mIdentify from "../components/identify/index";
 import { Toast } from "vant";
+import { post } from "../service/http";
 
 export default {
   components: {
@@ -66,16 +68,29 @@ export default {
       identifyCode: "",
       validCode: "",
     });
+    const router = useRouter();
     //
     function updateValue(val) {
       state.validCode = val;
     }
     //
-    function onSubmit() {
+    async function onSubmit() {
       if (state.identifyCode !== state.validCode) {
         Toast("验证码不正确");
         return;
       }
+      let obj = {};
+      obj.loginName = state.username;
+      obj.password = state.password;
+      let temp = await post("/user/register", obj);
+      if (temp.resultCode !== 200) {
+        Toast(temp.message);
+        return;
+      }
+      Toast("注册成功，请登录");
+      setTimeout(() => {
+        router.push("/login");
+      }, 1000);
     }
     //
     return {

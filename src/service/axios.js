@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Toast } from 'vant'
+import store from '../common/js/store'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASEAPI,
@@ -18,6 +19,10 @@ service.interceptors.request.use(
       message: '加载中...',
       forbidClick: true
     })
+    const token = store.get('token')
+    if (token || token !== '') {
+      config.headers.common.token = token
+    }
     return config
   },
   error => {
