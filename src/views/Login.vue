@@ -65,8 +65,8 @@ export default {
   },
   setup() {
     const state = reactive({
-      username: "",
-      password: "",
+      username: "13812342222",
+      password: "123456",
       identifyCode: "",
       validCode: "",
     });

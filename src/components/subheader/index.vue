@@ -74,7 +74,12 @@ export default {
   .headertitle {
     flex: 1;
     color: @primary;
-    .flexcenter();
+    line-height: 50px;
+    height: 50px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 </style>
