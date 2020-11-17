@@ -7,39 +7,37 @@
     <!-- 内容 -->
     <div class="detailcontent">
       <!-- 购物车物品 -->
-      <van-checkbox-group v-model="cartSelect">
-        <van-swipe-cell v-for="(item, index) in list" :key="index">
-          <div class="gooditem">
-            <van-checkbox :name="item.cartItemId" checked-color="#f0250f" />
-            <div class="goodimg">
-              <img :src="filterImg(item.goodsCoverImg)" />
+      <van-swipe-cell v-for="(item, index) in list" :key="index">
+        <div class="gooditem">
+          <van-checkbox v-model="item.checked" checked-color="#f0250f" />
+          <div class="goodimg">
+            <img :src="filterImg(item.goodsCoverImg)" />
+          </div>
+          <div class="gooddesc">
+            <div class="goodtitle">
+              <span>{{ item.goodsName }}</span>
+              <span>x{{ item.goodsCount }}</span>
             </div>
-            <div class="gooddesc">
-              <div class="goodtitle">
-                <span>{{ item.goodsName }}</span>
-                <span>x{{ item.goodsCount }}</span>
-              </div>
-              <div class="goodbtn">
-                <div class="price">¥{{ item.sellingPrice }}</div>
-                <van-stepper
-                  disable-input
-                  integer
-                  :min="1"
-                  :max="5"
-                  :v-value="item.goodsCount"
-                  :name="index"
-                  @change="onChange"
-                  theme="round"
-                  button-size="22"
-                />
-              </div>
+            <div class="goodbtn">
+              <div class="price">¥{{ item.sellingPrice }}</div>
+              <van-stepper
+                disable-input
+                integer
+                :min="1"
+                :max="5"
+                :v-value="item.goodsCount"
+                :name="index"
+                @change="onChange"
+                theme="round"
+                button-size="22"
+              />
             </div>
           </div>
-          <template #right>
-            <van-button icon="delete" type="primary" class="delete-button" />
-          </template>
-        </van-swipe-cell>
-      </van-checkbox-group>
+        </div>
+        <template #right>
+          <van-button icon="delete" type="primary" class="delete-button" />
+        </template>
+      </van-swipe-cell>
       <!-- 提交购物车 -->
       <van-submit-bar
         :disabled="!cartSelect.length"
@@ -60,7 +58,7 @@
 </template>
 
 <script>
-import { reactive, toRefs, onMounted } from "vue";
+import { reactive, toRefs, onMounted, computed } from "vue";
 import { useRouter } from "vue-router";
 import store from "../common/js/store";
 import { Toast } from "vant";
@@ -76,10 +74,9 @@ export default {
     const state = reactive({
       tabActive: 2,
       checked: false,
-      totalPrice: 0,
-      cartSelect: [],
       list: [
         {
+          checked: false,
           cartItemId: 2450,
           goodsCount: 1,
           goodsCoverImg:
@@ -89,6 +86,26 @@ export default {
           sellingPrice: 7988,
         },
       ],
+    });
+    //
+    let totalPrice = computed(() => {
+      let total = 0;
+      state.list.forEach((item) => {
+        if (item.checked) {
+          total += item.goodsCount * item.sellingPrice;
+        }
+      });
+      return total * 100;
+    });
+    //
+    let cartSelect = computed(() => {
+      let temp = [];
+      state.list.forEach((item) => {
+        if (item.checked) {
+          temp.push(item.cartItemId);
+        }
+      });
+      return temp;
     });
     // const router = useRouter();
     // //
@@ -122,15 +139,13 @@ export default {
     }
     //
     function selectAll(val) {
-      if (val) {
-        state.totalPrice = 1;
-      } else {
-        state.totalPrice = 0;
+      for (let i = 0; i < state.list.length; i++) {
+        state.list[i].checked = val;
       }
     }
     //
     function onSubmit() {
-      console.log(state.cartSelect);
+      console.log(cartSelect);
     }
     //
     return {
@@ -139,6 +154,8 @@ export default {
       onChange,
       onSubmit,
       selectAll,
+      totalPrice,
+      cartSelect,
     };
   },
 };
